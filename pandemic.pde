@@ -1114,7 +1114,6 @@ var defeat = function() {
 };
 
 draw = function() {
-    size(500,500);
     if (screen === 0) {
         startMenu();
     } else if (screen === 1) {
