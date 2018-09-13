@@ -1,2 +1,2 @@
 # pandemic
-to paly pandemic, hopefully
+to play pandemic, hopefully
