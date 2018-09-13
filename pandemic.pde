@@ -1,5 +1,7 @@
 /****** P A N D E M I C *****/
 
+size(600,400);
+
 var redC = color(245, 106, 46);
 var blueC = color(34, 132, 230);
 var blackC = color(94, 94, 94);
