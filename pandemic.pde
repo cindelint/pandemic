@@ -1,18 +1,20 @@
 /****** P A N D E M I C *****/
-
+//ok you know what? finish it on ka before you try to transfer it ok
 color redC = color(245, 106, 46);
 color blueC = color(34, 132, 230);
 color blackC = color(94, 94, 94);
 color yellowC = color(250, 231, 23);
 
-//arrays that dont change
+int screen = 0;
+int outbreakCount = 0;
+
+
 class Card {
-    public String name;
-    public String country;
-    public color cardC;
-    public String type;
-    public int xPos;
-    public int yPos;
+    String name, country;
+    color cardC;
+    String type;
+    int xPos, yPos;
+    int number;
     Card(String name, String country, color cardC, String type, int xPos, int yPos) {
         this.name = name;
         this.country = country;
@@ -22,71 +24,72 @@ class Card {
         this.yPos = yPos;
     }
 }
-Object[] drawP = new Object[] {
-    new Card("Atlanta", "United States", blueC, "city", 175,162),
-    new Card("Johannesburg", "South Africa", yellowC, "city", 320,283),
-    new Card("Johannesburg","South Africa", yellowC, "city", 320,288),
-    new Card("Istanbul", "Turkey", blackC, "city", 347, 181),
-    new Card("Hong Kong", "China", redC, "city", 452, 197),
-    new Card("San Francisco", "United States", blueC, "city", 124, 150),
-    new Card("Chicago", "United States", blueC, "city", 154, 140),
-    new Card("Toronto", "Canada", blueC, "city", 183, 131),
-    new Card("New York", "United States", blueC, "city", 220, 136),
-    new Card("Washington", "United States", blueC, "city", 215, 157),
-    new Card("London", "Great Britain", blueC, "city", 283, 147),
-    new Card("Madrid", "Spain", blueC, "city", 276, 179),
-    new Card("Paris", "France", blueC, "city", 301, 166),
-    new Card("Essen", "Germany", blueC, "city", 327, 141),
-    new Card("Milan", "Italy", blueC, "city", 321, 179),
-    new Card("St. Petersburg", "Russia", blueC, "city", 343, 111),
-    new Card("Los Angeles", "United States", yellowC, "city", 144, 175),
-    new Card("Mexico City", "Mexico", yellowC, "city", 177, 193),
-    new Card("Miami", "United States", yellowC, "city", 211, 180),
-    new Card("Bogota", "Columbia", yellowC, "city", 198, 222),
-    new Card("Lima", "Peru", yellowC, "city", 183, 250),
-    new Card("Santiago", "Chile", yellowC, "city", 188, 284),
-    new Card("Sao Paulo", "Brazil", yellowC, "city", 240, 243),
-    new Card("Buenos Aires", "Argentina", yellowC, "city", 226, 273),
-    new Card("Lagos", "Nigeria", yellowC, "city", 298, 234),
-    new Card("Kinshasa", "The Republic of Congo", yellowC, "city", 313, 256),
-    new Card("Kartoum", "Sudan", yellowC, "city", 341, 248),
-    new Card("Algiers", "Algeria", blackC, "city", 301, 204),
-    new Card("Cairo", "Egypt", blackC, "city", 334, 204),
-    new Card("Moscow", "Russia", blackC, "city", 372, 161),
-    new Card("Tehran", "Iran", blackC, "city", 385, 179),
-    new Card("Baghdad", "Iraq", blackC, "city", 368, 196),
-    new Card("Riyadh", "Saudi Arabia", blackC, "city", 369, 222),
-    new Card("Karachi", "Pakistan", blackC, "city", 389, 213),
-    new Card("Mumbai", "India", blackC, "city", 392, 237),
-    new Card("Delhi", "Delhi", blackC, "city", 402, 197),
-    new Card("Kolkata", "India", blackC, "city", 422, 209),
-    new Card("Chennai", "India", blackC, "city", 415, 226),
-    new Card("Bangkok", "Thailand", redC, "city", 446, 223),
-    new Card("Jakarta", "Indonesia", redC, "city", 429, 254),
-    new Card("Beijing", "China", redC, "city", 461, 154),
-    new Card("Shanghai", "China", redC, "city", 456, 177),
-    new Card("Ho Chi Minh City", "Vietnam", redC, "city", 455, 240),
-    new Card("Seoul", "South Korea", redC, "city", 485, 159),
-    new Card("Taipei", "Taiwan", redC, "city", 477, 205),
-    new Card("Manila", "The Phillipines", redC, "city", 493, 251),
-    new Card("Sydney", "Australia", redC, "city", 480, 297),
-    new Card("Tokyo", "Japan", redC, "city", 494, 190),
-    new Card("Osaka", "Japan", redC, "city", 498, 212),
-    new Card("spev"),
-    new Card("epidemic")
-  };
-
 class Role {
   String name;
   String info;
   color roleColor;
+  int number;
   Role(String name, String info, color roleColor) {
     this.name = name;
     this.info = info;
     this.roleColor = roleColor;
   }
 }
-Object[] roles = new Object[] {
+
+//arrays that dont change
+Card[] drawP = new Card[] {
+  new Card("Atlanta", "United States", blueC, "city", 175, 162),
+  new Card("Johannesburg","South Africa", yellowC, "city", 320, 288),
+  new Card("Istanbul", "Turkey", blackC, "city", 347, 181),
+  new Card("Hong Kong", "China", redC, "city", 452, 197),
+  new Card("San Francisco", "United States", blueC, "city", 124, 150),
+  new Card("Chicago", "United States", blueC, "city", 154, 140),
+  new Card("Toronto", "Canada", blueC, "city", 183, 131),
+  new Card("New York", "United States", blueC, "city", 220, 136),
+  new Card("Washington", "United States", blueC, "city", 215, 157),
+  new Card("London", "Great Britain", blueC, "city", 283, 147),
+  new Card("Madrid", "Spain", blueC, "city", 276, 179),
+  new Card("Paris", "France", blueC, "city", 301, 166),
+  new Card("Essen", "Germany", blueC, "city", 327, 141),
+  new Card("Milan", "Italy", blueC, "city", 321, 179),
+  new Card("St. Petersburg", "Russia", blueC, "city", 343, 111),
+  new Card("Los Angeles", "United States", yellowC, "city", 144, 175),
+  new Card("Mexico City", "Mexico", yellowC, "city", 177, 193),
+  new Card("Miami", "United States", yellowC, "city", 211, 180),
+  new Card("Bogota", "Columbia", yellowC, "city", 198, 222),
+  new Card("Lima", "Peru", yellowC, "city", 183, 250),
+  new Card("Santiago", "Chile", yellowC, "city", 188, 284),
+  new Card("Sao Paulo", "Brazil", yellowC, "city", 240, 243),
+  new Card("Buenos Aires", "Argentina", yellowC, "city", 226, 273),
+  new Card("Lagos", "Nigeria", yellowC, "city", 298, 234),
+  new Card("Kinshasa", "The Republic of Congo", yellowC, "city", 313, 256),
+  new Card("Kartoum", "Sudan", yellowC, "city", 341, 248),
+  new Card("Algiers", "Algeria", blackC, "city", 301, 204),
+  new Card("Cairo", "Egypt", blackC, "city", 334, 204),
+  new Card("Moscow", "Russia", blackC, "city", 372, 161),
+  new Card("Tehran", "Iran", blackC, "city", 385, 179),
+  new Card("Baghdad", "Iraq", blackC, "city", 368, 196),
+  new Card("Riyadh", "Saudi Arabia", blackC, "city", 369, 222),
+  new Card("Karachi", "Pakistan", blackC, "city", 389, 213),
+  new Card("Mumbai", "India", blackC, "city", 392, 237),
+  new Card("Delhi", "Delhi", blackC, "city", 402, 197),
+  new Card("Kolkata", "India", blackC, "city", 422, 209),
+  new Card("Chennai", "India", blackC, "city", 415, 226),
+  new Card("Bangkok", "Thailand", redC, "city", 446, 223),
+  new Card("Jakarta", "Indonesia", redC, "city", 429, 254),
+  new Card("Beijing", "China", redC, "city", 461, 154),
+  new Card("Shanghai", "China", redC, "city", 456, 177),
+  new Card("Ho Chi Minh City", "Vietnam", redC, "city", 455, 240),
+  new Card("Seoul", "South Korea", redC, "city", 485, 159),
+  new Card("Taipei", "Taiwan", redC, "city", 477, 205),
+  new Card("Manila", "The Phillipines", redC, "city", 493, 251),
+  new Card("Sydney", "Australia", redC, "city", 480, 297),
+  new Card("Tokyo", "Japan", redC, "city", 494, 190),
+  new Card("Osaka", "Japan", redC, "city", 498, 212),
+  // new Card("spev"),
+  // new Card("epidemic")
+};
+Role[] roles = new Role[] {
   new Role("Troubleshooter", "1) At your turn's start, peek at the number of cards on top of the Infection Draw Pile equal to the current infection rate. 2) When performing a Direct Flight action, you reveal but do not discard the card.", color(227, 45, 70)),
   new Role("Medic", "1) Remove all cubes of a single color when you treat a city. 2) Administer known cures for free.", color(217, 163, 3)),
   new Role("Generalist", "You get 5 actions to spend each turn.", color(112, 112, 112)),
@@ -97,41 +100,21 @@ Object[] roles = new Object[] {
   new Role("Dispatcher", "1) Move your fellow players' pawns on your turn as if they were your own. 2) Move any pawn to another city containing a pawn for 1 action.", color(186, 80, 184)),
   new Role("Archivist", "1) Your hand limit is 8 cards. 2) Once per turn, you may spend an action to draw your current city's card from the Player Discard Pile.", color(36, 76, 179))
 };
+
 String[] colors = new String[] {"blue","yellow","black","red"};
-String[] connections = new String[];
+String[] connections = new String[250];
 
 //arrays where things get added and spliced
-Object[] infDeck = new Object[];
-Object[] infDisc = new Object[];
-Object[] drawPile = new Object[];
-Object[] drawPDisc = new Object[];
-Object[] hand = new Object[] { new int[], new int[], new int[], new int[] };
+Card[] infDeck = new Card[48];
+Card[] infDisc = new Card[48];
+Card[] drawPile = new Card[700];
+Card[] drawPDisc = new Card[700];
+Object[] hand = new Object[] { new int[7], new int[7], new int[7], new int[7] };
 int[] position = {0,0,0,0};
 int[] cubeCount = {24,24,24,24}; //blue, yellow, black, red
-Object[] roles2 = new Object[];
-Object[] playerRoles = new Object[];
+Role[] roles2 = new Role[9];
+Role[] playerRoles = new Role[4];
 
-int screen = 0;
-int outbreakCount = 0;
-
-//more plans
-/**
-- every turn:
-    - draw infection
-    - add cubes to board
-    - make actions
-    - draw two from draw pile
-
-- possible actions
-    - moving along map
-    - teleport by discard
-    teleport by research station
-    - treat
-    - build research station (discard 1)
-    - cure (discard 5)
-    - special event cards
-    - special role
-*/
 
 void drawSphere(int x, float sphereX, float sphereY, float diameter) {
     float cardW = diameter*3.9;
@@ -142,6 +125,7 @@ void drawSphere(int x, float sphereX, float sphereY, float diameter) {
     fill(drawP[x].cardC);
     noStroke();
     ellipse(sphereX,sphereY,diameter,diameter);
+
 
     //sphere design
     strokeWeight(cardW/55);
@@ -209,6 +193,7 @@ void drawSphere(int x, float sphereX, float sphereY, float diameter) {
     bezierVertex(cardX-cardW/5.3,cardY-cardW/4.8,cardX-cardW/5.4,cardY-cardW/2.5,sphereX+cardW/10.4,sphereY-cardW/11);
     endShape();
 }
+
 //for pure sphere purposes, 1-blue 2-yellow 3-black 4-red
 void drawPlayer(int role, float x, float y, float s) {
 
@@ -231,6 +216,24 @@ void drawPlayer(int role, float x, float y, float s) {
 }
 
 //CARD DESIGN
+void cardContents(int cx, float cX, float cY, float cW) {
+    //city name
+    pushMatrix();
+    fill(255,255,255);
+    textFont(createFont("sans serif",cW/7));
+    float w = textWidth(drawP[cx].name);
+    textAlign(LEFT,TOP);
+    if (w < cW/1.4) {
+        text(drawP[cx].name,cX-cW/2+cW/8,cY-cW*7/10+cW/30);
+    } else {
+        translate(cX,cY);
+        scale(0.8,1);
+        text(drawP[cx].name,-cW/2.0,-cW*7/10+cW/30);
+    }
+    popMatrix();
+
+    drawSphere(cx, cX-cW/3.25, cY-cW/3, cW/3.9);
+}
 void drawDrawP(int x, float cardX, float cardY, float cardW) {
     if (drawP[x].type == "city") {
 
@@ -265,52 +268,18 @@ void drawDrawP(int x, float cardX, float cardY, float cardW) {
         fill(0, 0, 0, 0);
         rect(cardX,cardY,cardW,cardW*7/5,cardW/7);
 
-        // void cardContents() {
-            //city name
-            pushMatrix();
-            fill(255,255,255);
-            textFont(createFont("sans serif"),cardW/7);
-            void w = textWidth(drawP[x].name);
-            textAlign(LEFT,TOP);
-            if (w < cardW/1.4) {
-                text(drawP[x].name,cardX-cardW/2+cardW/8,cardY-cardW*7/10+cardW/30);
-            } else {
-                translate(cardX,cardY);
-                scale(0.8,1);
-                text(drawP[x].name,-cardW/2.0,-cardW*7/10+cardW/30);
-            }
-            popMatrix();
-
-            drawSphere(x, cardX-cardW/3.25, cardY-cardW/3, cardW/3.9);
-        //};
+        cardContents(x, cardX, cardY, cardW);
         pushMatrix();
         translate(cardX,cardY);
         rotate(180);
         translate(-cardX,-cardY);
-        // void cardContents() {
-            //city name
-            pushMatrix();
-            fill(255,255,255);
-            textFont(createFont("sans serif"),cardW/7);
-            void w = textWidth(drawP[x].name);
-            textAlign(LEFT,TOP);
-            if (w < cardW/1.4) {
-                text(drawP[x].name,cardX-cardW/2+cardW/8,cardY-cardW*7/10+cardW/30);
-            } else {
-                translate(cardX,cardY);
-                scale(0.8,1);
-                text(drawP[x].name,-cardW/2.0,-cardW*7/10+cardW/30);
-            }
-            popMatrix();
-
-            drawSphere(x, cardX-cardW/3.25, cardY-cardW/3, cardW/3.9);
-        //};
+        cardContents(x, cardX, cardY, cardW);
         popMatrix();
     }
     if (drawP[x].type == "spev") {}
     if (drawP[x].type == "epidemic") {}
 }
-void drawInf(int x, float cardX, float cardY, float cardW) {
+/* void drawInf(int x, float cardX, float cardY, float cardW) {
     color cardBg = color(54, 128, 57);
     rectMode(CENTER);
 
@@ -363,7 +332,6 @@ void drawInf(int x, float cardX, float cardY, float cardW) {
     textSize(cardW/14);
     text(country,cardX-cardW/2.62,cardY-cardW/3.4);
     popMatrix();
-
 }
 void drawRoleCards(int x, float cardX, float cardY, float cardW) {
     pushMatrix();
@@ -404,9 +372,41 @@ void drawRoleCards(int x, float cardX, float cardY, float cardW) {
     textAlign(LEFT);
     text(roles[x].name,-cardW/1.2,-cardW/3.6);
     popMatrix();
-}
+} */
 
 //CHIP DESIGN
+void drawArrow(float chipD) {
+    beginShape();
+    vertex(chipD/20.8,-chipD/11.3);
+    vertex(chipD/8.6,-chipD/6.1);
+    vertex(chipD/12.3,-chipD/5.2);
+    vertex(chipD/5.1,-chipD/5.1);
+    vertex(chipD/5.2,-chipD/11.1);
+    vertex(chipD/6.1,-chipD/8.5);
+    vertex(chipD/11.5,-chipD/26.1);
+    endShape();
+}; //outbreak counter: arrows
+void drawInfThing(float chipD) {
+    float x = 78.8;
+    float y = 25.3;
+    fill(23, 23, 23);
+    beginShape();
+    vertex(-chipD/x,-chipD/y);
+    bezierVertex(-chipD/7.7,-chipD/13.4,-chipD/7.2,-chipD/5.6,-chipD/24.4,-chipD/4.2);
+    bezierVertex(-chipD/6.7,-chipD/5.8,-chipD/7.7,-chipD/29.4,-chipD/34.7,-chipD/71.5);
+    vertex(-chipD/x,-chipD/y);
+    endShape();
+}; //infection counter: strange curved things
+void drawYel(float chipD) {
+     noStroke();
+     fill(245, 226, 12, 200);
+     beginShape();
+     vertex(-chipD/100,0);
+     vertex(-chipD/14.8,-chipD/2.01);
+     vertex(chipD/14.8,-chipD/2.01);
+     vertex(chipD/100,0);
+     endShape();
+}; //eradicated diseases: the yellow lines
 void infChip(float x, float y, String type) {
     int d = 20;
     pushMatrix();
@@ -438,45 +438,20 @@ void infChip(float x, float y, String type) {
     if (type == "outbreak") {
         //four arrows
         fill(0,0,0);
-        void arrow() {
-            beginShape();
-            vertex(d/20.8,-d/11.3);
-            vertex(d/8.6,-d/6.1);
-            vertex(d/12.3,-d/5.2);
-            vertex(d/5.1,-d/5.1);
-            vertex(d/5.2,-d/11.1);
-            vertex(d/6.1,-d/8.5);
-            vertex(d/11.5,-d/26.1);
-            endShape();
-        };
-
         pushMatrix();
         for (int i=0; i<5; i++) {
             rotate(90*i);
-            arrow();
+            drawArrow(d);
         }
         popMatrix();
 
     } else if (type == "infection") {
-        //three strange curve things
-        void drawThing() {
-            float x = 78.8;
-            float y = 25.3;
-            fill(23, 23, 23);
-            beginShape();
-            vertex(-d/x,-d/y);
-            bezierVertex(-d/7.7,-d/13.4,-d/7.2,-d/5.6,-d/24.4,-d/4.2);
-            bezierVertex(-d/6.7,-d/5.8,-d/7.7,-d/29.4,-d/34.7,-d/71.5);
-            vertex(-d/x,-d/y);
-            endShape();
-        };
-
         pushMatrix();
         for (int i=0; i<3; i++) {
             rotate(120*i);
-            drawThing();
+            drawInfThing(d);
             scale(-1,1);
-            drawThing();
+            drawInfThing(d);
         }
         popMatrix();
 
@@ -491,20 +466,10 @@ void infChip(float x, float y, String type) {
         }
 
         //yellow lines
-       void drawYel() {
-            noStroke();
-            fill(245, 226, 12, 200);
-            beginShape();
-            vertex(-d/100,0);
-            vertex(-d/14.8,-d/2.01);
-            vertex(d/14.8,-d/2.01);
-            vertex(d/100,0);
-            endShape();
-        };
         pushMatrix();
         for (int i=0; i<12; i++) {
             rotate(30);
-            drawYel();
+            drawYel(d);
         }
         popMatrix();
 
@@ -516,7 +481,6 @@ void infChip(float x, float y, String type) {
             fill(255, 255, 31, 15);
             ellipse(0,d/23,i,i);
         }
-
 
         //ground
         noStroke();
@@ -549,7 +513,7 @@ void infChip(float x, float y, String type) {
 
     popMatrix();
 }
-void cureChip(float x, float y, color c) {
+void cureChip(float x, float y, String c) {
     int d = 20;
     pushMatrix();
     translate(x,y);
@@ -606,10 +570,10 @@ void cureChip(float x, float y, color c) {
 }
 
 //the one-time things we need to decide every game
-void drawRoles() {
+/* void drawRoles() {
     for (int i=0; i<4; i++) {
         int r = round(random(0, roles2.length-1));
-        playerRoles.push(roles2[r]);
+        playerRoles[playerRoles.length] = roles2[r];
         roles2.splice(r,1);
     }
 }
@@ -623,122 +587,122 @@ void beginHand() {
         hand[i].push(drawPile[r2]);
         drawPile.splice(r2,1);
     }
-}
+} */
+
+void worldMap() {
+    //the world map
+    noStroke();
+    fill(64, 89, 65);
+    pushMatrix();
+    translate(90,60);
+
+    //the americas
+    beginShape();
+    vertex(121, 229);
+    vertex(123, 263);
+    vertex(102, 229);
+    vertex(90, 183);
+    vertex(96, 152);
+    vertex(75, 134);
+    vertex(49, 116);
+    vertex(16, 65);
+    vertex(1, 55);
+    vertex(0, 33);
+    vertex(29, 26);
+    vertex(110, 20);
+    vertex(132, 42);
+    vertex(106, 104);
+    vertex(78, 117);
+    vertex(90, 133);
+    vertex(105, 149);
+    vertex(138, 152);
+    vertex(164, 175);
+    vertex(147, 203);
+    endShape(CLOSE);
+    popMatrix();
+
+    //eurasia
+    pushMatrix();
+    translate(111,58);
+    beginShape();
+    vertex(236, 235);
+    vertex(224, 235);
+    vertex(204, 212);
+    vertex(194, 183);
+    vertex(166, 181);
+    vertex(158, 153);
+    vertex(202, 139);
+    vertex(237, 133);
+    vertex(237, 120);
+    vertex(251, 111);
+    vertex(224, 118);
+    vertex(205, 115);
+    vertex(177, 124);
+    vertex(158, 120);
+    vertex(178, 104);
+    vertex(198, 78);
+    vertex(220, 77);
+    vertex(236, 68);
+    vertex(228, 50);
+    vertex(202, 69);
+    vertex(196, 59);
+    vertex(227, 29);
+    vertex(306, 33);
+    vertex(333, 39);
+    vertex(368, 23);
+    vertex(399, 24);
+    vertex(399, 51);
+    vertex(377, 76);
+    vertex(354, 86);
+    vertex(372, 101);
+    vertex(366, 129);
+    vertex(345, 149);
+    vertex(339, 182);
+    vertex(305, 164);
+    vertex(290, 199);
+    vertex(277, 176);
+    vertex(271, 146);
+    vertex(265, 172);
+    vertex(250, 153);
+    vertex(238, 179);
+    endShape(CLOSE);
+
+    beginShape();
+    vertex(170, 101);
+    vertex(156, 103);
+    vertex(169, 93);
+    vertex(170, 77);
+    vertex(176, 84);
+    endShape(CLOSE);
+
+    //australia
+    beginShape();
+    vertex(360, 264);
+    vertex(339, 250);
+    vertex(324, 241);
+    vertex(306, 247);
+    vertex(294, 258);
+    vertex(283, 244);
+    vertex(291, 235);
+    vertex(299, 227);
+    vertex(299, 214);
+    vertex(313, 210);
+    vertex(326, 201);
+    vertex(343, 205);
+    vertex(363, 214);
+    vertex(375, 222);
+    vertex(380, 250);
+    endShape(CLOSE);
+
+    popMatrix();
+};
+void connect(int x, int y) {
+  stroke(255, 0, 0, 220);
+  strokeWeight(2.3);
+  line(drawP[x].xPos, drawP[x].yPos, drawP[y].xPos, drawP[y].yPos);
+  // connections[connections.length] = x + " + " + y;
+};
 void drawMap() {
-  void worldMap() {
-      //the world map
-      noStroke();
-      fill(64, 89, 65);
-      pushMatrix();
-      translate(90,60);
-
-      //the americas
-      beginShape();
-      vertex(121, 229);
-      vertex(123, 263);
-      vertex(102, 229);
-      vertex(90, 183);
-      vertex(96, 152);
-      vertex(75, 134);
-      vertex(49, 116);
-      vertex(16, 65);
-      vertex(1, 55);
-      vertex(0, 33);
-      vertex(29, 26);
-      vertex(110, 20);
-      vertex(132, 42);
-      vertex(106, 104);
-      vertex(78, 117);
-      vertex(90, 133);
-      vertex(105, 149);
-      vertex(138, 152);
-      vertex(164, 175);
-      vertex(147, 203);
-      endShape(CLOSE);
-      popMatrix();
-
-      //eurasia
-      pushMatrix();
-      translate(111,58);
-      beginShape();
-      vertex(236, 235);
-      vertex(224, 235);
-      vertex(204, 212);
-      vertex(194, 183);
-      vertex(166, 181);
-      vertex(158, 153);
-      vertex(202, 139);
-      vertex(237, 133);
-      vertex(237, 120);
-      vertex(251, 111);
-      vertex(224, 118);
-      vertex(205, 115);
-      vertex(177, 124);
-      vertex(158, 120);
-      vertex(178, 104);
-      vertex(198, 78);
-      vertex(220, 77);
-      vertex(236, 68);
-      vertex(228, 50);
-      vertex(202, 69);
-      vertex(196, 59);
-      vertex(227, 29);
-      vertex(306, 33);
-      vertex(333, 39);
-      vertex(368, 23);
-      vertex(399, 24);
-      vertex(399, 51);
-      vertex(377, 76);
-      vertex(354, 86);
-      vertex(372, 101);
-      vertex(366, 129);
-      vertex(345, 149);
-      vertex(339, 182);
-      vertex(305, 164);
-      vertex(290, 199);
-      vertex(277, 176);
-      vertex(271, 146);
-      vertex(265, 172);
-      vertex(250, 153);
-      vertex(238, 179);
-      endShape(CLOSE);
-
-      beginShape();
-      vertex(170, 101);
-      vertex(156, 103);
-      vertex(169, 93);
-      vertex(170, 77);
-      vertex(176, 84);
-      endShape(CLOSE);
-
-      //australia
-      beginShape();
-      vertex(360, 264);
-      vertex(339, 250);
-      vertex(324, 241);
-      vertex(306, 247);
-      vertex(294, 258);
-      vertex(283, 244);
-      vertex(291, 235);
-      vertex(299, 227);
-      vertex(299, 214);
-      vertex(313, 210);
-      vertex(326, 201);
-      vertex(343, 205);
-      vertex(363, 214);
-      vertex(375, 222);
-      vertex(380, 250);
-      endShape(CLOSE);
-
-      popMatrix();
-  };
-  void connect(float x, float y) {
-    stroke(255, 0, 0, 220);
-    strokeWeight(2.3);
-    line(drawP[x].xPos, drawP[x].yPos, drawP[y].xPos, drawP[y].yPos);
-    connections.push(x + " + " + y);
-  };
-
   rectMode(CENTER);
   noStroke();
   fill(45, 48, 112);
@@ -755,10 +719,10 @@ void drawMap() {
   rect(465,90,70,50,10);
 
   //role cards
-  drawRoleCards(playerRoles[0].number,131,30,50);
+  /* drawRoleCards(playerRoles[0].number,131,30,50);
   drawRoleCards(playerRoles[1].number,469,30,50);
   drawRoleCards(playerRoles[2].number,131,370,50);
-  drawRoleCards(playerRoles[3].number,469,370,50);
+  drawRoleCards(playerRoles[3].number,469,370,50); */
 
   //CONNECTIONS
   //atlanta
@@ -868,12 +832,12 @@ void drawMap() {
   line(drawP[44].xPos,drawP[44].yPos,509,228); //manila to sf
   line(drawP[45].xPos,drawP[45].yPos,509,279); //sydney to la
 
-  connections.push("4 + 46");
-  connections.push("4 + 44");
-  connections.push("15 + 45");
+  // connections[connections.length] = "4 + 46";
+  // connections[connections.length] = "4 + 44";
+  // connections[connections.length] = "15 + 45";
 
   //cities
-  textFont(createFont("sans serif"),7);
+  textFont(createFont("sans serif",7));
   textAlign(CENTER);
   int s = 13; //size
   for (int i=0; i<48; i++) {
@@ -939,7 +903,7 @@ void drawMap() {
   }
 
   //cured diseases
-  textFont(createFont("sans serif"),8);
+  textFont(createFont("sans serif",8));
   fill(247, 224, 111,200);
   text("Cures Discovered",238,308);
   stroke(255, 0, 0);
@@ -953,7 +917,7 @@ void drawMap() {
   //THE BRAND (tm)
   pushMatrix();
   rotate(-7);
-  textFont(createFont("fantasy"),32);
+  textFont(createFont("fantasy",32));
   fill(255, 255, 0, 50);
   text("PANDEMIC",153,127);
   fill(255, 0, 0, 175);
@@ -964,6 +928,7 @@ void drawMap() {
 }
 
 //call when necessary
+/*
 void drawCubeDishes() {
      for (int i=0; i<4; i++) {
         pushMatrix();
@@ -1035,7 +1000,7 @@ void travel(int player, int place) {
         drawPlayer(playerRoles[player].number,drawP[place].xPos+random(-10,10),drawP[place].yPos-8+random(1,10),25);
     }
     position[player] = place;
-}
+} */
 
 //screens
 void startMenu() {
@@ -1062,7 +1027,7 @@ void startMenu() {
             fill(0,0,0,i*1.5);
             rect(300,290+i,200,1);
         }
-        if (mouseIsPressed) {
+        if (mousePressed) {
             screen++;
         }
     }
@@ -1082,31 +1047,31 @@ void drawBoard() {
 
     //create drawPile and infDeck
     for (int i=0; i<drawP.length; i++) {
-        drawPile.push(drawP[i]);
+        // drawPile[drawPile.length] = drawP[i];
     }
     for (int i=0; i<48; i++) {
-        infDeck.push(drawP[i]);
+        // infDeck[infDeck.length] = drawP[i];
     }
 
     //make copy of roles array, give numbers
     for (int i=0; i<roles.length; i++) {
         roles[i].number = i;
-        roles2.push(roles[i]);
+        // roles2[roles2.length] = roles[i];
     }
 
     //draw once
-    drawRoles();
-    beginHand();
+    // drawRoles();
+    // beginHand();
     drawMap();
 
     //redraw if change
-    drawCubeDishes();
-    drawChips();
-    drawHands();
+    // drawCubeDishes();
+    // drawChips();
+    // drawHands();
 
     //infect cities (function not necessary bc this sequence only
     for (int i=0; i<4; i++) {
-        travel(i,0);
+        // travel(i,0);
     }
 
     //draw research station at atlanta
@@ -1114,7 +1079,7 @@ void drawBoard() {
     screen++;
 }
 void gameplay() {
-    drawChips();
+    //drawChips();
     //background functions:
     //cube counter when hover
     //drawP card count when hover
@@ -1139,7 +1104,11 @@ void defeat() {
     //defeat screen
 }
 
-draw = function() {
+void setup() {
+  size(600,400);
+}
+
+void draw() {
     if (screen == 0) {
         startMenu();
     } else if (screen == 1) {
